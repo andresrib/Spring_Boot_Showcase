@@ -1,17 +1,21 @@
 services:
   mysql:
     image: 'mysql:latest'
+    command: --init-file /product/init.sql
+    volumes:
+      - ./init.sql:/product/init.sql
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
+      - 'MYSQL_DATABASE=loja'
       - 'MYSQL_PASSWORD=secret'
       - 'MYSQL_ROOT_PASSWORD=verysecret'
       - 'MYSQL_USER=myuser'
     ports:
-      - '3306'
+      - '3306:3306'
   rabbitmq:
-    image: 'rabbitmq:latest'
+    image: 'rabbitmq:3.13-management'
     environment:
       - 'RABBITMQ_DEFAULT_PASS=secret'
       - 'RABBITMQ_DEFAULT_USER=myuser'
     ports:
-      - '5672'
+      - '15672:15672'
+      - '5672:5672'
