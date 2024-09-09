@@ -19,7 +19,7 @@ public class OrderList {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="produto_id", referencedColumnName = "id")
